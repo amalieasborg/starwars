@@ -116,7 +116,8 @@
         const name = document.getElementById('name').value;
         const description = document.getElementById('description').value;
 
-        const response = await fetch('/characters', {
+        // Make sure this points to the correct character submission route
+        const response = await fetch('/submitCharacter', {  // Change to '/submitCharacter'
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -129,6 +130,7 @@
             document.getElementById('addCharacterForm').reset();  // Clear form
         }
     });
+
 
     // Delete a character
     async function deleteCharacter(index) {
