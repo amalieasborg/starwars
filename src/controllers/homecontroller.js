@@ -9,6 +9,6 @@ exports.getHomePage = (req, res) => {
 const characters=[];
 
 //GET /characters: Henter alle karakterer.
-app.get('/characters',(req,res)=>{
+exports.getCharacters= ((req,res)=>{
     res.json(characters);
 });
