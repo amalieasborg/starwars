@@ -13,7 +13,7 @@ exports.submitData = (req, res) => {
 const characters=[];
 
 //POST /character: Tilføjer en ny karakter.
-app.post('/characters', (req, res) => {
+exports.submitCharacter=(req, res) => {
     const character = {name:req.body.name, description:req.body.description};
     if (!character.name || typeof character.name !== 'string' ||
         !character.description || typeof character.description !== 'string') {
@@ -21,7 +21,7 @@ app.post('/characters', (req, res) => {
     }
     characters.push(character);
     res.status(201).json(character);
-});
+};
 
 //PUT /characters/:index: Opdaterer en eksisterende karakter baseret på det givne indeks.
 app.put('/characters/:index',(req,res)=>{
