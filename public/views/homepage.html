@@ -66,10 +66,20 @@
             color: #ffffff;
         }
         .character-item {
+            background-color: #3e3e3e; /* Darker background for each character item */
+            border-radius: 4px;
+            padding: 10px;
             margin-bottom: 10px;
+            display: flex; /* Use flexbox for item layout */
+            justify-content: space-between; /* Space between name and buttons */
+            align-items: center; /* Center items vertically */
         }
         .character-item button {
-            margin-left: 10px;
+            margin-left: 10px; /* Space between buttons */
+            background-color: #ffe81f; /* Button background color */
+        }
+        .character-item button:hover {
+            background-color: #ffd700; /* Hover effect */
         }
     </style>
 </head>
@@ -91,7 +101,24 @@
     <!-- Character list -->
     <div class="character-list" id="characterList">
         <h2>Character List</h2>
-        <div id="charactersContainer"></div>
+        <div id="charactersContainer">
+            <!-- Example character items -->
+            <div class="character-item">
+                <span>Darth Vader</span>
+                <div>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <div class="character-item">
+                <span>Luke Skywalker</span>
+                <div>
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </div>
+            </div>
+            <!-- More characters will be added here dynamically -->
+        </div>
     </div>
 </main>
 
