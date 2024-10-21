@@ -42,15 +42,18 @@ document.getElementById('addCharacterForm').addEventListener('submit', async (ev
     }
 });
 
-// Delete a character
 async function deleteCharacter(index) {
     const response = await fetch(`/characters/${index}`, {
         method: 'DELETE',
     });
+
     if (response.ok) {
         await fetchCharacters();  // Refresh character list
+    } else {
+        console.error('Error deleting character:', await response.json());
     }
 }
+
 
 
 async function editCharacter(index, currentName, currentDescription) {
