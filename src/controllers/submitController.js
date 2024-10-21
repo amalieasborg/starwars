@@ -24,7 +24,7 @@ exports.submitCharacter=(req, res) => {
 };
 
 //PUT /characters/:index: Opdaterer en eksisterende karakter baseret på det givne indeks.
-app.put('/characters/:index',(req,res)=>{
+exports.editCharacter=(req,res)=>{
     const index=req.params.index;
     const updateCharacter=req.body;
     if(characters[index]){
@@ -33,10 +33,10 @@ app.put('/characters/:index',(req,res)=>{
     }else{
         res.status(404).json({message:'Character was not found'});
     }
-});
+};
 
 //DELETE /characters/:index: Sletter en karakter baseret på det givne indeks.
-app.delete('/characters/:index',(req,res)=>{
+exports.deleteCharacter=(req,res)=>{
     const index=req.params.index;
     if (characters[index]){
         characters.splice(index,1);
@@ -44,6 +44,6 @@ app.delete('/characters/:index',(req,res)=>{
     }else{
         res.status(404).json({message: 'Character not found'});
     }
-});
+};
 
 exports.characters = characters;
