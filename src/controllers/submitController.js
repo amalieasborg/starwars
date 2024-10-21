@@ -45,3 +45,5 @@ app.delete('/characters/:index',(req,res)=>{
         res.status(404).json({message: 'Character not found'});
     }
 });
+
+exports.characters = characters;
