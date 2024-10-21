@@ -7,9 +7,9 @@
 
 
     // Middleware
+    app.use(express.json());
     app.use(logger);
     app.use(express.static(path.join(__dirname, '..', 'public')));
-    app.use(express.json());
 
     // Routes
     app.use('/', homeRoutes);
