@@ -33,6 +33,8 @@
             border-radius: 8px;
             margin-right: 20px; /* Space between form and character list */
             box-sizing: border-box; /* Include padding in the width */
+            display: flex; /* Use flexbox for form layout */
+            flex-direction: column; /* Arrange items vertically */
         }
         .character-list {
             max-width: 400px; /* Set a max width for the character list */
@@ -52,7 +54,7 @@
             box-sizing: border-box; /* Include padding in the width */
         }
         textarea {
-            min-height: 80px; /* Set a minimum height for the textarea */
+            min-height: 120px; /* Set a minimum height for the textarea */
             resize: vertical; /* Allow vertical resizing */
         }
         button {
@@ -62,7 +64,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%; /* Make the button stretch */
+            margin-top: 10px; /* Space above the button */
         }
         button:hover {
             background-color: #ffd700;
