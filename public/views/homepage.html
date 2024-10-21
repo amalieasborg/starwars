@@ -20,7 +20,7 @@
         h1 {
             color: #ffe81f;
         }
-        form {
+        form, .character-list {
             margin: 50px auto;
             width: 300px;
             padding: 20px;
@@ -53,6 +53,15 @@
             padding: 10px;
             color: #ffffff;
         }
+        .character-list {
+            text-align: left;
+        }
+        .character-item {
+            margin-bottom: 10px;
+        }
+        .character-item button {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -62,16 +71,97 @@
 </header>
 
 <main>
-    <form id="addCharacterForm" action="/characters" method="POST">
+    <!-- Form for adding characters -->
+    <form id="addCharacterForm">
         <h2>Add a New Character</h2>
         <input type="text" id="name" name="name" placeholder="Character Name" required>
         <textarea id="description" name="description" placeholder="Character Description" required></textarea>
         <button type="submit">Add Character</button>
     </form>
+
+    <!-- Character list -->
+    <div class="character-list" id="characterList">
+        <h2>Character List</h2>
+        <div id="charactersContainer"></div>
+    </div>
 </main>
 
 <footer>
     <p>Star Wars API Web Application | May the Force be with you!</p>
 </footer>
+
+<script>
+    const characterList = document.getElementById('charactersContainer');
+
+    // Fetch characters from the server and display them
+    async function fetchCharacters() {
+        const response = await fetch('/characters');
+        const characters = await response.json();
+        characterList.innerHTML = '';
+        characters.forEach((character, index) => {
+            const characterItem = document.createElement('div');
+            characterItem.classList.add('character-item');
+            characterItem.innerHTML = `
+                    <strong>${character.name}:</strong> ${character.description}
+                    <button onclick="deleteCharacter(${index})">Delete</button>
+                    <button onclick="editCharacter(${index}, '${character.name}', '${character.description}')">Edit</button>
+                `;
+            characterList.appendChild(characterItem);
+        });
+    }
+
+    // Add a new character
+    document.getElementById('addCharacterForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const description = document.getElementById('description').value;
+
+        const response = await fetch('/characters', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, description }),
+        });
+
+        if (response.status === 201) {
+            await fetchCharacters();  // Refresh character list
+            document.getElementById('addCharacterForm').reset();  // Clear form
+        }
+    });
+
+    // Delete a character
+    async function deleteCharacter(index) {
+        const response = await fetch(`/characters/${index}`, {
+            method: 'DELETE',
+        });
+        if (response.status === 200) {
+            await fetchCharacters();  // Refresh character list
+        }
+    }
+
+    // Edit a character (update its details)
+    async function editCharacter(index, currentName, currentDescription) {
+        const newName = prompt('Enter new name:', currentName);
+        const newDescription = prompt('Enter new description:', currentDescription);
+
+        if (newName && newDescription) {
+            const response = await fetch(`/characters/${index}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: newName, description: newDescription }),
+            });
+
+            if (response.status === 200) {
+                await fetchCharacters();  // Refresh character list
+            }
+        }
+    }
+
+    // Load characters on page load
+    window.onload = fetchCharacters;
+</script>
 </body>
 </html>
