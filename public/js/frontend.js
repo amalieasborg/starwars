@@ -52,12 +52,12 @@ async function deleteCharacter(index) {
     }
 }
 
-// Edit a character (update its details)
+
 async function editCharacter(index, currentName, currentDescription) {
     const newName = prompt('Enter new name:', currentName);
     const newDescription = prompt('Enter new description:', currentDescription);
 
-    if (newName && newDescription) {
+    if (newName || newDescription) {
         const response = await fetch(`/characters/${index}`, {
             method: 'PUT',
             headers: {
@@ -68,6 +68,8 @@ async function editCharacter(index, currentName, currentDescription) {
 
         if (response.ok) {
             await fetchCharacters();  // Refresh character list
+        } else {
+            console.error('Error updating character:', await response.json());
         }
     }
 }
