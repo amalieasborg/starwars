@@ -37,13 +37,16 @@
             flex-direction: column; /* Arrange items vertically */
         }
         .character-list {
-            max-width: 400px; /* Set a max width for the character list */
-            width: 100%; /* Make the character list stretch */
+            width: auto; /* Allow the character list to expand based on content */
+            max-width: 600px; /* Set a maximum width for better control */
             padding: 20px;
-            background-color: #2e2e2e;
-            border-radius: 8px;
-            text-align: left;
+            background-color: #2e2e2e; /* Dark background for contrast */
+            border-radius: 8px; /* Rounded corners */
+            text-align: left; /* Align text to the left */
             box-sizing: border-box; /* Include padding in the width */
+            margin-left: 20px; /* Space between the form and character list */
+            overflow-y: auto; /* Add scroll if content exceeds height */
+            max-height: 400px; /* Optional: limit height */
         }
         input, textarea {
             width: 100%;
