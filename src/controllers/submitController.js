@@ -14,9 +14,9 @@ const characters=[];
 
 //POST /character: Tilføjer en ny karakter.
 app.post('/characters', (req, res) => {
-    const character = req.body;
-    if (!character.name || typeof character.name !== 'string') {
-        return res.status(400).json({ message: 'Invalid character name' });
+    const character = {name:req.body.name, description:req.body.description};
+    if (!character.name || typeof character.name !== 'string' && typeof character.description !== 'string') {
+        return res.status(400).json({ message: 'Invalid character name or description' });
     }
     characters.push(character);
     res.status(201).json(character);
