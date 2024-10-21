@@ -72,7 +72,15 @@
             margin-bottom: 10px;
             display: flex; /* Use flexbox for item layout */
             justify-content: space-between; /* Space between name and buttons */
-            align-items: center; /* Center items vertically */
+            align-items: flex-start; /* Align items to the top */
+            flex-direction: column; /* Stack items vertically */
+        }
+        .character-name {
+            font-weight: bold; /* Bold the character name */
+            margin-bottom: 5px; /* Space below the name */
+        }
+        .character-description {
+            margin-bottom: 10px; /* Space below the description */
         }
         .character-item button {
             margin-left: 10px; /* Space between buttons */
@@ -102,21 +110,6 @@
     <div class="character-list" id="characterList">
         <h2>Character List</h2>
         <div id="charactersContainer">
-            <!-- Example character items -->
-            <div class="character-item">
-                <span>Darth Vader</span>
-                <div>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <div class="character-item">
-                <span>Luke Skywalker</span>
-                <div>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </div>
-            </div>
             <!-- More characters will be added here dynamically -->
         </div>
     </div>
